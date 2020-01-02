@@ -1,10 +1,10 @@
-import React from 'react'
+       import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import Connexion from './Components/Connexion.js'
 import * as serviceWorker from './serviceWorker'
-import NotFound from './Components/NotFound.js'
+import NotFound from './Components/NotFound.js';
 // React ROOTER
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 const Root = () => (
@@ -14,7 +14,7 @@ const Root = () => (
       <Route exact path='/' component={Connexion} />
       <Route path='/pseudo/:pseudo' component={App} /> 
       <Route component={NotFound} /> 
-
+      <Route path='/pseudo/NotFound' component={NotFound} /> 
     </Switch>
   </BrowserRouter>
 )

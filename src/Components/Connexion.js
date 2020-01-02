@@ -11,8 +11,7 @@ class Connexion extends Component {
 
   handleChange = event => {
     const pseudo = event.target.value
-    this.setState({pseudo})
-    console.log(this.state.pseudo)
+    this.setState({pseudo})   
   }
   goToChat = event => {
     event.preventDefault()
@@ -22,7 +21,8 @@ class Connexion extends Component {
     render(){
       
       if(this.state.goToChat){
-        return <Redirect to={`/pseudo/`+this.state.pseudo}> </Redirect>
+        // push for does't forgot
+        return <Redirect push to={`/pseudo/`+this.state.pseudo}> </Redirect>
       }
 
 
