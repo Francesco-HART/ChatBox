@@ -1,49 +1,64 @@
 import React, {Component, Fragment} from 'react'
-
+import Message from "./Message";
 
 class Formulaire extends Component{
 
   state = {
-    message: ''
+        message: '',
+        length: this.props.length,
+
   }
 
   creatMessage = () => {
     const { addMessage, pseudo} = this.props
     const message = {
-      pseudo,
-      message: this.state.message
+        pseudo,
+
+        message: this.state.message,
     }
     addMessage(message)
     //Reset
-this.setState({Message :  ''})
-
+    this.setState({message :  ''})
   }
 
 
  handleSubmit = event => {
     //I have directive
-    event.preventDefault()
-    this.creatMessage()
+        event.preventDefault()
+        const lenght = this.props.length
+        this.creatMessage()
+        this.setState({  lenght })
+    //Message(this.state.message)
   }
 
 
   handleChange = event => {
-    const message = event.target.value
-    this.setState({ message })
+        console.log(this.state.toSend)
+        const message = event.target.value
+        const lenght = this.props.length - (message.length)
+        this.setState({ message, lenght })
   }
+    handleKeyUp = event => {
+      if (event.key === 'Enter'){
+          this.creatMessage()
+      }
+    }
 
 
   render(){
     return(
-      <form className= 'form'
-      onSubmit= {this.handleSubmit}>
+      <form
+          className= 'form'
+          onSubmit= {this.handleSubmit}
+      >
         <textarea 
           value= {this.state.message}
-          onChange= { this.handleChange} 
-          required maxLength= '140' />
-        <div className = 'info'> 140 </div>
+          onChange= { this.handleChange}
+          onKeyUp={this.handleKeyUp}
+          required maxLength= {this.props.length} />
+        <div className = 'info'> {this.state.lenght} </div>
         <button type = 'submit'>
-          Send Message
+          Send Message :
         </button>
       </form>
     )
